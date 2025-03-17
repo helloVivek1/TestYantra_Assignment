@@ -44,5 +44,5 @@ class Tee{
 
 
 }
-let WomenTee = new Tee
-export default WomenTee
+
+export default Tee

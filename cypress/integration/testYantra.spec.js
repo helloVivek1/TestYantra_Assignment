@@ -1,13 +1,14 @@
-import {WomenTee} from '../integration/pages/page1.js'
+import Tee from '../integration/Pages/WomenTee.js'
 describe("Task for Today",function(){
 
     Cypress.on("uncaught:exception",function(err,runnable){
         return false
     })
+    let WomenTee = new Tee
     it("Task-1",function(){
-        visitWebSite()
-        searchForWomenTess()
-        CheckSizeAndColor()
-        AddToCart()
+        WomenTee.visitWebSite()
+        WomenTee.searchForWomenTess()
+        WomenTee.CheckSizeAndColor()
+        WomenTee.AddToCart()
     })
 })
