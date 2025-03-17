@@ -5,10 +5,14 @@ class Tee{
         Tops : '[id="ui-id-9"]',
         Tees : '[id="ui-id-13"]',
         TeesUrl : 'https://magento.softwaretestingboard.com/women/tops-women/tees-women.html',
-        clickOnProduct : '[alt="Desiree Fitness Tee"]',
-        singleProductUrl : 'https://magento.softwaretestingboard.com/desiree-fitness-tee.html',
+        serchBox : '[id="search"]',
+        clickOnWomenTees : '[id="qs-option-0"]',
+        fiveProductList : '[class="products list items product-items"]',
+
+        clickOnProduct : '[class="products list items product-items"] >li',
+        singleProductUrl : 'https://magento.softwaretestingboard.com/minerva-lumatech-trade-v-tee.html',
         checkSize : '#option-label-size-143-item-167',
-        color_select : '#option-label-color-93-item-56',
+        color_select : '#option-label-color-93-item-50',
         clickOnCartButton : '[title="Add to Cart"]',
         LastMessage : 'You added Desiree Fitness Tee to your '
 
@@ -19,16 +23,22 @@ class Tee{
         cy.visit(this.selectors.url)
     }
 
-    searchForWomenTess(){
+    searchForWomenTess(Product_Name){
         cy.get(this.selectors.womenText).trigger("mouseover")
         cy.get(this.selectors.Tops).trigger("mouseover")
         cy.get(this.selectors.Tees).click()
         cy.get(this.selectors.TeesUrl).should('include','/tops-women/tees-women.html')
+        cy.get(this.selectors.serchBox).type(Product_Name)
+        cy.get(this.selectors.clickOnWomenTees).click()
+        cy.get(this.selectors.fiveProductList).should('have.length',5)
+        cy.get(this.selectors.clickOnProduct).eq(2).click()
+        cy.get(this.selectors.singleProductUrl).should('include','minerva-lumatech-trade-v-tee.html')
+        
+
     }
 
     CheckSizeAndColor(){
-        cy.get(this.selectors.clickOnProduct).click()
-        cy.get(this.selectors.singleProductUrl).should('include','/desiree-fitness-tee.html')
+        
         cy.get(this.selectors.checkSize).click()
         cy.get(this.selectors.color_select).click()
 
